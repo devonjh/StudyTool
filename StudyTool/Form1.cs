@@ -15,6 +15,7 @@ namespace StudyTool
 		public Form1()
 		{
 			InitializeComponent();
+			FontBox.Text = "Font Size";
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,6 +86,25 @@ namespace StudyTool
 		private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			richTextBox1.SelectAll();
+		}
+
+		//Change to DropDown Menu later.
+		private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+		{
+			int n;
+			bool isNumber = int.TryParse(FontBox.Text, out n);
+
+			if  (isNumber)
+			{
+				int fontSize = Convert.ToInt32(FontBox.Text);
+
+				Font currentFont = richTextBox1.SelectionFont;
+
+				FontStyle newFont = (FontStyle)(currentFont.Style);
+				richTextBox1.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFont);
+			}
+
+			
 		}
 	}
 }
