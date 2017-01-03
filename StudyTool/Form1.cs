@@ -12,10 +12,11 @@ namespace StudyTool
 {
 	public partial class Form1 : Form
 	{
+		protected int fontSize;
+
 		public Form1()
 		{
 			InitializeComponent();
-			FontBox.Text = "Font Size";
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,23 +89,75 @@ namespace StudyTool
 			richTextBox1.SelectAll();
 		}
 
-		//Change to DropDown Menu later.
-		private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+		private void changeFontSize (int Size)
 		{
-			int n;
-			bool isNumber = int.TryParse(FontBox.Text, out n);
+			int fontSize = Size;
 
-			if  (isNumber)
-			{
-				int fontSize = Convert.ToInt32(FontBox.Text);
-
-				Font currentFont = richTextBox1.SelectionFont;
-
-				FontStyle newFont = (FontStyle)(currentFont.Style);
-				richTextBox1.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFont);
-			}
-
-			
+			Font currentFont = richTextBox1.SelectionFont;
+			FontStyle newFont = (FontStyle)(currentFont.Style);
+			richTextBox1.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFont);
 		}
+
+		private void toolStripMenuItem2_Click(object sender, EventArgs e)
+		{
+			fontSize = 6;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem3_Click(object sender, EventArgs e)
+		{
+			fontSize = 8;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem4_Click(object sender, EventArgs e)
+		{
+			fontSize = 10;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem5_Click(object sender, EventArgs e)
+		{
+			fontSize = 12;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem6_Click(object sender, EventArgs e)
+		{
+			fontSize = 14;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem7_Click(object sender, EventArgs e)
+		{
+			fontSize = 16;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem8_Click(object sender, EventArgs e)
+		{
+			fontSize = 18;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem9_Click(object sender, EventArgs e)
+		{
+			fontSize = 20;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem10_Click(object sender, EventArgs e)
+		{
+			fontSize = 22;
+			changeFontSize(fontSize);
+		}
+
+		private void toolStripMenuItem11_Click(object sender, EventArgs e)
+		{
+			fontSize = 24;
+			changeFontSize(fontSize);
+		}
+
+
 	}
 }
