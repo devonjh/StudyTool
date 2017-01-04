@@ -22,6 +22,7 @@ namespace StudyTool
 		{
 			InitializeComponent();
 			SizeBox.Text = "Font Size";
+			TypeBox.Text = "Font Type";
 			initialFontType();
 		}
 
@@ -139,7 +140,7 @@ namespace StudyTool
 			else if (!BoldStatus)
 			{
 				Font currentFont = richTextBox1.SelectionFont;
-				richTextBox1.SelectionFont = new Font("Times New ROman", fontSize, FontStyle.Regular);
+				richTextBox1.SelectionFont = new Font("Times New Roman", fontSize, FontStyle.Regular);
 			}
 		}
 
@@ -154,6 +155,17 @@ namespace StudyTool
 			{
 				changeFontSize();
 			}
+		}
+
+		private void SizeBox_Click(object sender, EventArgs e)
+		{
+			SizeBox.ForeColor = Color.Black;
+			SizeBox.Text = "";
+		}
+
+		private void TypeBox_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
