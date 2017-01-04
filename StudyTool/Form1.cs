@@ -12,11 +12,17 @@ namespace StudyTool
 {
 	public partial class Form1 : Form
 	{
-		protected int fontSize;
+		protected int fontSize = 12;
+
+		protected bool BoldStatus = false;
+		protected bool UnderlineStatus = false;
+		protected bool ItalicStatus = false;
 
 		public Form1()
 		{
 			InitializeComponent();
+			SizeBox.Text = "Font Size";
+			initialFontType();
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -89,75 +95,65 @@ namespace StudyTool
 			richTextBox1.SelectAll();
 		}
 
-		private void changeFontSize (int Size)
+		private void changeFontSize()
 		{
-			int fontSize = Size;
+			int n;
 
+			bool isNumeric = int.TryParse(SizeBox.Text, out n);
+
+			if (isNumeric)
+			{
+				fontSize = Convert.ToInt32(SizeBox.Text);
+				Font currentFont = richTextBox1.SelectionFont;
+				FontStyle newFont = (FontStyle)(currentFont.Style);
+				richTextBox1.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFont);
+			}
+		}
+
+		private void initialFontType ()
+		{
 			Font currentFont = richTextBox1.SelectionFont;
 			FontStyle newFont = (FontStyle)(currentFont.Style);
-			richTextBox1.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFont);
+			richTextBox1.SelectionFont = new Font("Times New Roman", fontSize, newFont);
 		}
 
-		private void toolStripMenuItem2_Click(object sender, EventArgs e)
+		//Allow the user to make the text Bold.
+		private void boldToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			fontSize = 6;
-			changeFontSize(fontSize);
+			if (!BoldStatus) //Current Text state is not bold.
+			{
+				BoldStatus = true;
+			}
+
+			else if (BoldStatus) //Current Text state is bold. So when bold is hit again switch back to normal text.
+			{
+				BoldStatus = false;
+			}
+
+			if (BoldStatus)
+			{
+				Font currentFont = richTextBox1.SelectionFont;
+				richTextBox1.SelectionFont = new Font("Times New Roman", fontSize, FontStyle.Bold);
+			}
+			
+			else if (!BoldStatus)
+			{
+				Font currentFont = richTextBox1.SelectionFont;
+				richTextBox1.SelectionFont = new Font("Times New ROman", fontSize, FontStyle.Regular);
+			}
 		}
 
-		private void toolStripMenuItem3_Click(object sender, EventArgs e)
+		private void underlineToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			fontSize = 8;
-			changeFontSize(fontSize);
+
 		}
 
-		private void toolStripMenuItem4_Click(object sender, EventArgs e)
+		private void SizeBox_KeyDown(object sender, KeyEventArgs e)
 		{
-			fontSize = 10;
-			changeFontSize(fontSize);
+			if (e.KeyCode == Keys.Enter) //Enter key was pressed while within the SizeBox.
+			{
+				changeFontSize();
+			}
 		}
-
-		private void toolStripMenuItem5_Click(object sender, EventArgs e)
-		{
-			fontSize = 12;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem6_Click(object sender, EventArgs e)
-		{
-			fontSize = 14;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem7_Click(object sender, EventArgs e)
-		{
-			fontSize = 16;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem8_Click(object sender, EventArgs e)
-		{
-			fontSize = 18;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem9_Click(object sender, EventArgs e)
-		{
-			fontSize = 20;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem10_Click(object sender, EventArgs e)
-		{
-			fontSize = 22;
-			changeFontSize(fontSize);
-		}
-
-		private void toolStripMenuItem11_Click(object sender, EventArgs e)
-		{
-			fontSize = 24;
-			changeFontSize(fontSize);
-		}
-
-
 	}
 }
